@@ -1,9 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Link } from "next-intl"
-import PerformanceStats from "@/components/dashboard/performance-stats"
-import SuccessCalendar from "@/components/dashboard/success-calendar"
-import TodoList from "@/components/dashboard/todo-list"
-import { Sparkles, BookOpen } from "lucide-react"
 import {
   Card,
   CardContent,
@@ -11,6 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import PerformanceStats from "@/components/dashboard/performance-stats"
+import SuccessCalendar from "@/components/dashboard/success-calendar"
+import TodoList from "@/components/dashboard/todo-list"
+import { BookOpen, Sparkles } from "lucide-react"
+import { Link } from 'next-intl'
 import { useTranslations } from "next-intl"
 
 export default function DashboardPage() {

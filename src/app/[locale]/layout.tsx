@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import MainLayout from '@/components/main-layout';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 export const metadata: Metadata = {
   title: 'RepeatWise',
@@ -9,13 +10,16 @@ export const metadata: Metadata = {
 
 export default function LocaleLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = useMessages();
   return (
-    <>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <MainLayout>{children}</MainLayout>
       <Toaster />
-    </>
+    </NextIntlClientProvider>
   );
 }

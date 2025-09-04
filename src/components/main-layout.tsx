@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Link, useLocale, useTranslations } from 'next-intl';
@@ -185,7 +186,7 @@ function UserMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           <Avatar>
-            <AvatarImage src="https://picsum.photos/50/50" alt="User avatar" data-ai-hint="person face" width={50} height={50} />
+            <AvatarImage src="https://picsum.photos/50/50" alt="User avatar" data-ai-hint="person face" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <span className="sr-only">{t('toggleUserMenu')}</span>
