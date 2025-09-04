@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocale, useTranslations } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   BookOpen,
   LayoutDashboard,
@@ -23,7 +23,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useTranslations, useLocale } from 'next-intl';
 import {
   Select,
   SelectContent,
@@ -53,12 +52,13 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 
 function LocaleSwitcher() {
   const locale = useLocale();
+  const router = useRouter();
   const pathname = usePathname();
 
   const onSelectChange = (value: string) => {
     // This will replace the current locale in the pathname with the new one.
     const newPath = pathname.replace(`/${locale}`, `/${value}`);
-    window.location.href = newPath;
+    router.replace(newPath);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Link } from "next-intl"
 import PerformanceStats from "@/components/dashboard/performance-stats"
 import SuccessCalendar from "@/components/dashboard/success-calendar"
 import TodoList from "@/components/dashboard/todo-list"
