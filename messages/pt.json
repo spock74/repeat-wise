@@ -1,0 +1,106 @@
+
+{
+  "Dashboard": {
+    "welcome": "Bem-vindo de volta!",
+    "description": "Aqui está seu painel de estudos para hoje.",
+    "generateQuestions": "Gerar Perguntas",
+    "startStudying": "Começar a Estudar",
+    "recentActivityTitle": "Atividade Recente",
+    "recentActivityDescription": "Revise suas sessões de estudo recentes.",
+    "noRecentActivity": "Nenhuma atividade recente. Comece uma nova sessão de estudo!"
+  },
+  "Generate": {
+    "title": "Geração Adaptativa de Perguntas",
+    "description": "Use IA para criar perguntas de seus documentos ou por tópico.",
+    "fromTopic": "A partir de Tópico",
+    "fromDocument": "A partir de Documento",
+    "topicLabel": "Tópico",
+    "topicPlaceholder": "ex: A Renascença",
+    "topicDescription": "Sobre qual assunto são as perguntas?",
+    "difficultyLabel": "Dificuldade",
+    "difficultyPlaceholder": "Selecione a dificuldade",
+    "easy": "Fácil",
+    "medium": "Média",
+    "hard": "Difícil",
+    "questionTypeLabel": "Tipo de Pergunta",
+    "questionTypePlaceholder": "Selecione o tipo",
+    "multipleChoice": "Múltipla Escolha",
+    "openResponse": "Resposta Aberta",
+    "quiz": "Quiz",
+    "numberOfQuestionsLabel": "Número de Perguntas (1-10)",
+    "generateButton": "Gerar Perguntas",
+    "generatingButton": "Gerando...",
+    "documentLabel": "Documento",
+    "uploadButton": "Carregar PDF, DOCX, TXT ou MD",
+    "errorTitle": "Erro ao Gerar Perguntas",
+    "errorDescription": "Algo deu errado. Por favor, tente novamente.",
+    "generatedQuestionsTitle": "Perguntas Geradas",
+    "saveButton": "Salvar Perguntas"
+  },
+  "Manage": {
+    "title": "Gerenciar Conjuntos de Perguntas",
+    "description": "Organize suas perguntas por disciplina, tópico e tags.",
+    "newSet": "Novo Conjunto",
+    "setName": "Nome do Conjunto",
+    "discipline": "Disciplina",
+    "topic": "Tópico",
+    "questions": "Perguntas",
+    "nextReview": "Próxima Revisão",
+    "actions": "Ações",
+    "edit": "Editar",
+    "study": "Estudar",
+    "delete": "Excluir"
+  },
+  "Study": {
+    "title": "Sessão de Estudo",
+    "description": "Concentre-se e revise suas perguntas.",
+    "question": "Pergunta",
+    "multipleChoice": "Múltipla Escolha",
+    "openResponse": "Resposta Aberta",
+    "showAnswer": "Mostrar Resposta",
+    "tryAgain": "Tentar Novamente",
+    "prev": "Anterior",
+    "next": "Próxima",
+    "yourAnswer": "Sua resposta...",
+    "correctAnswer": "Resposta Correta:"
+  },
+  "PerformanceStats": {
+    "title": "Progresso dos Estudos",
+    "description": "Sua retenção e novas perguntas aprendidas nos últimos 6 meses.",
+    "retention": "Retenção",
+    "newQuestions": "Novas Perguntas",
+    "january": "Janeiro",
+    "february": "Fevereiro",
+    "march": "Março",
+    "april": "Abril",
+    "may": "Maio",
+    "june": "Junho"
+  },
+  "SuccessCalendar": {
+    "title": "Calendário de Sucesso",
+    "description": "Sua sequência de estudos visualizada."
+  },
+  "TodoList": {
+    "title": "Lista de Tarefas de Estudo",
+    "description": "Seus objetivos para hoje.",
+    "newGoalPlaceholder": "Novo objetivo de estudo...",
+    "noGoals": "Nenhum objetivo ainda. Adicione um!"
+  },
+  "Layout": {
+    "dashboard": "Painel",
+    "studySession": "Sessão de Estudo",
+    "generateQuestions": "Gerar Perguntas",
+    "manageSets": "Gerenciar Conjuntos",
+    "toggleNav": "Alternar menu de navegação",
+    "appName": "RepeatWise",
+    "toggleUserMenu": "Alternar menu de usuário",
+    "myAccount": "Minha Conta",
+    "settings": "Configurações",
+    "support": "Suporte",
+    "logout": "Sair"
+  },
+  "Validation": {
+    "topicMin": "O tópico deve ter pelo menos 2 caracteres.",
+    "uploadDocument": "Por favor, carregue um documento válido."
+  }
+}

@@ -23,6 +23,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { useTranslations } from "next-intl"
 
 const questionSets = [
     { name: "Biology 101", discipline: "Science", topic: "Cell Biology", questions: 45, nextReview: "2 days" },
@@ -33,31 +34,33 @@ const questionSets = [
 
 
 export default function ManagePage() {
+    const t = useTranslations('Manage');
+
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between">
                 <div>
-                    <CardTitle>Manage Question Sets</CardTitle>
+                    <CardTitle>{t('title')}</CardTitle>
                     <CardDescription>
-                        Organize your questions by discipline, topic, and tags.
+                        {t('description')}
                     </CardDescription>
                 </div>
                 <Button>
                     <PlusCircle className="mr-2 h-4 w-4" />
-                    New Set
+                    {t('newSet')}
                 </Button>
             </CardHeader>
             <CardContent>
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>Set Name</TableHead>
-                            <TableHead>Discipline</TableHead>
-                            <TableHead>Topic</TableHead>
-                            <TableHead className="text-right">Questions</TableHead>
-                            <TableHead>Next Review</TableHead>
+                            <TableHead>{t('setName')}</TableHead>
+                            <TableHead>{t('discipline')}</TableHead>
+                            <TableHead>{t('topic')}</TableHead>
+                            <TableHead className="text-right">{t('questions')}</TableHead>
+                            <TableHead>{t('nextReview')}</TableHead>
                             <TableHead>
-                                <span className="sr-only">Actions</span>
+                                <span className="sr-only">{t('actions')}</span>
                             </TableHead>
                         </TableRow>
                     </TableHeader>
@@ -80,10 +83,10 @@ export default function ManagePage() {
                                         </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
-                                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                                        <DropdownMenuItem>Study</DropdownMenuItem>
-                                        <DropdownMenuItem className="text-destructive">Delete</DropdownMenuItem>
+                                        <DropdownMenuLabel>{t('actions')}</DropdownMenuLabel>
+                                        <DropdownMenuItem>{t('edit')}</DropdownMenuItem>
+                                        <DropdownMenuItem>{t('study')}</DropdownMenuItem>
+                                        <DropdownMenuItem className="text-destructive">{t('delete')}</DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>

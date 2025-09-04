@@ -35,23 +35,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, FileUp, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-const paramsFormSchema = z.object({
-  topic: z.string().min(2, { message: 'Topic must be at least 2 characters.' }),
-  difficulty: z.enum(['easy', 'medium', 'hard']),
-  numberOfQuestions: z.coerce.number().int().min(1).max(10),
-  questionType: z.enum(['multiple-choice', 'open-response', 'quiz']),
-});
-
-const docFormSchema = z.object({
-  documentDataUri: z.string().startsWith('data:', {message: "Please upload a valid document."}),
-  questionType: z.enum(['multiple-choice', 'open-response', 'quiz']),
-  numberOfQuestions: z.coerce.number().int().min(1).max(10),
-});
+import { useTranslations } from 'next-intl';
 
 function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQuestions: (q: string[]) => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const t = useTranslations('Generate');
+  const tValidation = useTranslations('Validation');
+
+  const paramsFormSchema = z.object({
+    topic: z.string().min(2, { message: tValidation('topicMin') }),
+    difficulty: z.enum(['easy', 'medium', 'hard']),
+    numberOfQuestions: z.coerce.number().int().min(1).max(10),
+    questionType: z.enum(['multiple-choice', 'open-response', 'quiz']),
+  });
+
   const form = useForm<z.infer<typeof paramsFormSchema>>({
     resolver: zodResolver(paramsFormSchema),
     defaultValues: {
@@ -71,8 +69,8 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error Generating Questions",
-        description: "Something went wrong. Please try again.",
+        title: t('errorTitle'),
+        description: t('errorDescription'),
         variant: "destructive",
       });
     } finally {
@@ -88,11 +86,11 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
           name="topic"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Topic</FormLabel>
+              <FormLabel>{t('topicLabel')}</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., The Renaissance" {...field} />
+                <Input placeholder={t('topicPlaceholder')} {...field} />
               </FormControl>
-              <FormDescription>What subject are the questions about?</FormDescription>
+              <FormDescription>{t('topicDescription')}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -103,17 +101,17 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
             name="difficulty"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Difficulty</FormLabel>
+                <FormLabel>{t('difficultyLabel')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select difficulty" />
+                      <SelectValue placeholder={t('difficultyPlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="easy">Easy</SelectItem>
-                    <SelectItem value="medium">Medium</SelectItem>
-                    <SelectItem value="hard">Hard</SelectItem>
+                    <SelectItem value="easy">{t('easy')}</SelectItem>
+                    <SelectItem value="medium">{t('medium')}</SelectItem>
+                    <SelectItem value="hard">{t('hard')}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -125,17 +123,17 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
             name="questionType"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Question Type</FormLabel>
+                <FormLabel>{t('questionTypeLabel')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select type" />
+                      <SelectValue placeholder={t('questionTypePlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="multiple-choice">Multiple Choice</SelectItem>
-                    <SelectItem value="open-response">Open Response</SelectItem>
-                    <SelectItem value="quiz">Quiz</SelectItem>
+                    <SelectItem value="multiple-choice">{t('multipleChoice')}</SelectItem>
+                    <SelectItem value="open-response">{t('openResponse')}</SelectItem>
+                    <SelectItem value="quiz">{t('quiz')}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -148,7 +146,7 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
           name="numberOfQuestions"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Number of Questions (1-10)</FormLabel>
+              <FormLabel>{t('numberOfQuestionsLabel')}</FormLabel>
               <FormControl>
                 <Input type="number" min="1" max="10" {...field} />
               </FormControl>
@@ -158,9 +156,9 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
         />
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting ? (
-            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating...</>
+            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('generatingButton')}</>
           ) : (
-            <><Sparkles className="mr-2 h-4 w-4" /> Generate Questions</>
+            <><Sparkles className="mr-2 h-4 w-4" /> {t('generateButton')}</>
           )}
         </Button>
       </form>
@@ -172,6 +170,15 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState('');
   const { toast } = useToast();
+  const t = useTranslations('Generate');
+  const tValidation = useTranslations('Validation');
+
+  const docFormSchema = z.object({
+    documentDataUri: z.string().startsWith('data:', {message: tValidation('uploadDocument')}),
+    questionType: z.enum(['multiple-choice', 'open-response', 'quiz']),
+    numberOfQuestions: z.coerce.number().int().min(1).max(10),
+  });
+
   const form = useForm<z.infer<typeof docFormSchema>>({
     resolver: zodResolver(docFormSchema),
     defaultValues: {
@@ -202,8 +209,8 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error Generating Questions",
-        description: "Something went wrong. Please try again.",
+        title: t('errorTitle'),
+        description: t('errorDescription'),
         variant: "destructive",
       });
     } finally {
@@ -219,13 +226,13 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
           name="documentDataUri"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Document</FormLabel>
+              <FormLabel>{t('documentLabel')}</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input type="file" className="w-full h-10 opacity-0 absolute inset-0 z-10 cursor-pointer" accept=".pdf,.docx,.txt,.md" onChange={handleFileChange} />
                   <Button type="button" variant="outline" className="w-full h-10">
                     <FileUp className="mr-2 h-4 w-4" />
-                    {fileName || 'Upload PDF, DOCX, TXT, or MD'}
+                    {fileName || t('uploadButton')}
                   </Button>
                 </div>
               </FormControl>
@@ -239,17 +246,17 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
             name="questionType"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Question Type</FormLabel>
+                <FormLabel>{t('questionTypeLabel')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select type" />
+                      <SelectValue placeholder={t('questionTypePlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="multiple-choice">Multiple Choice</SelectItem>
-                    <SelectItem value="open-response">Open Response</SelectItem>
-                    <SelectItem value="quiz">Quiz</SelectItem>
+                    <SelectItem value="multiple-choice">{t('multipleChoice')}</SelectItem>
+                    <SelectItem value="open-response">{t('openResponse')}</SelectItem>
+                    <SelectItem value="quiz">{t('quiz')}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -261,7 +268,7 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
             name="numberOfQuestions"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Number of Questions (1-10)</FormLabel>
+                <FormLabel>{t('numberOfQuestionsLabel')}</FormLabel>
                 <FormControl>
                   <Input type="number" min="1" max="10" {...field} />
                 </FormControl>
@@ -272,9 +279,9 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
         </div>
         <Button type="submit" className="w-full" disabled={isSubmitting || !fileName}>
           {isSubmitting ? (
-            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating...</>
+            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('generatingButton')}</>
           ) : (
-            <><Sparkles className="mr-2 h-4 w-4" /> Generate Questions</>
+            <><Sparkles className="mr-2 h-4 w-4" /> {t('generateButton')}</>
           )}
         </Button>
       </form>
@@ -284,12 +291,13 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
 
 export default function GenerateForm() {
   const [generatedQuestions, setGeneratedQuestions] = useState<string[]>([]);
+  const t = useTranslations('Generate');
   return (
     <div className="space-y-8">
       <Tabs defaultValue="topic" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="topic">From Topic</TabsTrigger>
-          <TabsTrigger value="document">From Document</TabsTrigger>
+          <TabsTrigger value="topic">{t('fromTopic')}</TabsTrigger>
+          <TabsTrigger value="document">{t('fromDocument')}</TabsTrigger>
         </TabsList>
         <TabsContent value="topic" className="mt-6">
           <GenerateFromParametersForm setGeneratedQuestions={setGeneratedQuestions} />
@@ -300,9 +308,9 @@ export default function GenerateForm() {
       </Tabs>
       {generatedQuestions.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-xl font-semibold">Generated Questions</h3>
+          <h3 className="text-xl font-semibold">{t('generatedQuestionsTitle')}</h3>
           <Textarea value={generatedQuestions.join('\n\n')} readOnly rows={10} className="bg-muted" />
-          <Button>Save Questions</Button>
+          <Button>{t('saveButton')}</Button>
         </div>
       )}
     </div>

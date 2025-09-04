@@ -6,15 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 export default function GeneratePage() {
+  const t = useTranslations('Generate');
   return (
     <div className="flex justify-center items-start pt-8">
       <Card className="w-full max-w-2xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl">Adaptive Question Generation</CardTitle>
+          <CardTitle className="text-3xl">{t('title')}</CardTitle>
           <CardDescription>
-            Use AI to create questions from your documents or by topic.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>

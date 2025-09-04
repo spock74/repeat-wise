@@ -1,6 +1,7 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from "@/components/ui/chart";
+import { useTranslations } from "next-intl";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 
 const chartData = [
@@ -12,23 +13,27 @@ const chartData = [
   { month: "June", retention: 93, new: 85 },
 ];
 
-const chartConfig = {
-  retention: {
-    label: "Retention",
-    color: "hsl(var(--primary))",
-  },
-  new: {
-    label: "New Questions",
-    color: "hsl(var(--accent))",
-  },
-} satisfies ChartConfig;
-
 export default function PerformanceStats() {
+  const t = useTranslations('PerformanceStats');
+
+  const chartConfig = {
+    retention: {
+      label: t('retention'),
+      color: "hsl(var(--primary))",
+    },
+    new: {
+      label: t('newQuestions'),
+      color: "hsl(var(--accent))",
+    },
+  } satisfies ChartConfig;
+  
+  const monthT = (key: string) => t(key.toLowerCase());
+
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Study Progress</CardTitle>
-        <CardDescription>Your retention and new questions learned over the last 6 months.</CardDescription>
+        <CardTitle>{t('title')}</CardTitle>
+        <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
@@ -40,7 +45,7 @@ export default function PerformanceStats() {
                 tickLine={false}
                 tickMargin={10}
                 axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)}
+                tickFormatter={(value) => monthT(value).slice(0, 3)}
               />
               <YAxis
                 unit="%"

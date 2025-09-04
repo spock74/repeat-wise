@@ -11,30 +11,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useTranslations } from "next-intl"
 
 export default function DashboardPage() {
+  const t = useTranslations('Dashboard');
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">
-            Welcome Back!
+            {t('welcome')}
           </h1>
           <p className="text-muted-foreground">
-            Here's your study dashboard for today.
+            {t('description')}
           </p>
         </div>
         <div className="flex gap-2">
           <Button asChild>
             <Link href="/generate">
               <Sparkles className="mr-2 h-4 w-4" />
-              Generate Questions
+              {t('generateQuestions')}
             </Link>
           </Button>
           <Button variant="secondary" asChild>
             <Link href="/study">
               <BookOpen className="mr-2 h-4 w-4" />
-              Start Studying
+              {t('startStudying')}
             </Link>
           </Button>
         </div>
@@ -52,11 +55,11 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
-          <CardDescription>Review your recent study sessions.</CardDescription>
+          <CardTitle>{t('recentActivityTitle')}</CardTitle>
+          <CardDescription>{t('recentActivityDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">No recent activity. Start a new study session!</p>
+          <p className="text-sm text-muted-foreground">{t('noRecentActivity')}</p>
         </CardContent>
       </Card>
     </div>

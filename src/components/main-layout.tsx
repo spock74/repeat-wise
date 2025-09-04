@@ -23,6 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from 'next-intl';
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -42,15 +43,15 @@ export default function MainLayout({ children }: { children: ReactNode }) {
   );
 }
 
-const navItems = [
-  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/study', label: 'Study Session', icon: BookOpen },
-  { href: '/generate', label: 'Generate Questions', icon: Sparkles },
-  { href: '/manage', label: 'Manage Sets', icon: Settings },
-];
-
 function SidebarNav() {
   const pathname = usePathname();
+  const t = useTranslations('Layout');
+  const navItems = [
+    { href: '/', label: t('dashboard'), icon: LayoutDashboard },
+    { href: '/study', label: t('studySession'), icon: BookOpen },
+    { href: '/generate', label: t('generateQuestions'), icon: Sparkles },
+    { href: '/manage', label: t('manageSets'), icon: Settings },
+  ];
   return (
     <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
       {navItems.map(({ href, label, icon: Icon }) => (
@@ -71,13 +72,14 @@ function SidebarNav() {
 }
 
 function Sidebar() {
+  const t = useTranslations('Layout');
   return (
     <aside className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <Sparkles className="h-6 w-6 text-primary" />
-            <span className="">RepeatWise</span>
+            <span className="">{t('appName')}</span>
           </Link>
         </div>
         <div className="flex-1">
@@ -90,19 +92,26 @@ function Sidebar() {
 
 function MobileSidebar() {
   const pathname = usePathname();
+  const t = useTranslations('Layout');
+  const navItems = [
+    { href: '/', label: t('dashboard'), icon: LayoutDashboard },
+    { href: '/study', label: t('studySession'), icon: BookOpen },
+    { href: '/generate', label: t('generateQuestions'), icon: Sparkles },
+    { href: '/manage', label: t('manageSets'), icon: Settings },
+  ];
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="shrink-0 md:hidden">
           <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle navigation menu</span>
+          <span className="sr-only">{t('toggleNav')}</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col p-0">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <Sparkles className="h-6 w-6 text-primary" />
-            <span className="">RepeatWise</span>
+            <span className="">{t('appName')}</span>
           </Link>
         </div>
         <div className="flex-1 overflow-y-auto py-2">
@@ -128,6 +137,7 @@ function MobileSidebar() {
 }
 
 function UserMenu() {
+  const t = useTranslations('Layout');
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -136,16 +146,16 @@ function UserMenu() {
             <AvatarImage src="https://picsum.photos/50/50" alt="User avatar" data-ai-hint="person face" width={50} height={50} />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <span className="sr-only">Toggle user menu</span>
+          <span className="sr-only">{t('toggleUserMenu')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{t('myAccount')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuItem>{t('settings')}</DropdownMenuItem>
+        <DropdownMenuItem>{t('support')}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem>{t('logout')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

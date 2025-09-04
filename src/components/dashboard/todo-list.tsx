@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PlusCircle, Trash2 } from "lucide-react";
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface Task {
   id: number;
@@ -21,6 +22,7 @@ const initialTasks: Task[] = [
 ];
 
 export default function TodoList() {
+  const t = useTranslations('TodoList');
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [newTask, setNewTask] = useState("");
 
@@ -42,14 +44,14 @@ export default function TodoList() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Study To-Do List</CardTitle>
-        <CardDescription>Your goals for today.</CardDescription>
+        <CardTitle>{t('title')}</CardTitle>
+        <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex w-full items-center space-x-2 mb-4">
           <Input 
             type="text" 
-            placeholder="New study goal..." 
+            placeholder={t('newGoalPlaceholder')} 
             value={newTask} 
             onChange={(e) => setNewTask(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAddTask()}
@@ -85,7 +87,7 @@ export default function TodoList() {
               </Button>
             </div>
           ))}
-          {tasks.length === 0 && <p className="text-sm text-muted-foreground text-center pt-4">No goals yet. Add one!</p>}
+          {tasks.length === 0 && <p className="text-sm text-muted-foreground text-center pt-4">{t('noGoals')}</p>}
         </div>
       </CardContent>
     </Card>

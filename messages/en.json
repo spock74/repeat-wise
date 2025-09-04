@@ -1,0 +1,106 @@
+
+{
+  "Dashboard": {
+    "welcome": "Welcome Back!",
+    "description": "Here's your study dashboard for today.",
+    "generateQuestions": "Generate Questions",
+    "startStudying": "Start Studying",
+    "recentActivityTitle": "Recent Activity",
+    "recentActivityDescription": "Review your recent study sessions.",
+    "noRecentActivity": "No recent activity. Start a new study session!"
+  },
+  "Generate": {
+    "title": "Adaptive Question Generation",
+    "description": "Use AI to create questions from your documents or by topic.",
+    "fromTopic": "From Topic",
+    "fromDocument": "From Document",
+    "topicLabel": "Topic",
+    "topicPlaceholder": "e.g., The Renaissance",
+    "topicDescription": "What subject are the questions about?",
+    "difficultyLabel": "Difficulty",
+    "difficultyPlaceholder": "Select difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "questionTypeLabel": "Question Type",
+    "questionTypePlaceholder": "Select type",
+    "multipleChoice": "Multiple Choice",
+    "openResponse": "Open Response",
+    "quiz": "Quiz",
+    "numberOfQuestionsLabel": "Number of Questions (1-10)",
+    "generateButton": "Generate Questions",
+    "generatingButton": "Generating...",
+    "documentLabel": "Document",
+    "uploadButton": "Upload PDF, DOCX, TXT, or MD",
+    "errorTitle": "Error Generating Questions",
+    "errorDescription": "Something went wrong. Please try again.",
+    "generatedQuestionsTitle": "Generated Questions",
+    "saveButton": "Save Questions"
+  },
+  "Manage": {
+    "title": "Manage Question Sets",
+    "description": "Organize your questions by discipline, topic, and tags.",
+    "newSet": "New Set",
+    "setName": "Set Name",
+    "discipline": "Discipline",
+    "topic": "Topic",
+    "questions": "Questions",
+    "nextReview": "Next Review",
+    "actions": "Actions",
+    "edit": "Edit",
+    "study": "Study",
+    "delete": "Delete"
+  },
+  "Study": {
+    "title": "Study Session",
+    "description": "Focus and review your questions.",
+    "question": "Question",
+    "multipleChoice": "Multiple Choice",
+    "openResponse": "Open Response",
+    "showAnswer": "Show Answer",
+    "tryAgain": "Try Again",
+    "prev": "Prev",
+    "next": "Next",
+    "yourAnswer": "Your answer...",
+    "correctAnswer": "Correct Answer:"
+  },
+  "PerformanceStats": {
+    "title": "Study Progress",
+    "description": "Your retention and new questions learned over the last 6 months.",
+    "retention": "Retention",
+    "newQuestions": "New Questions",
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June"
+  },
+  "SuccessCalendar": {
+    "title": "Success Calendar",
+    "description": "Your study streak visualized."
+  },
+  "TodoList": {
+    "title": "Study To-Do List",
+    "description": "Your goals for today.",
+    "newGoalPlaceholder": "New study goal...",
+    "noGoals": "No goals yet. Add one!"
+  },
+  "Layout": {
+    "dashboard": "Dashboard",
+    "studySession": "Study Session",
+    "generateQuestions": "Generate Questions",
+    "manageSets": "Manage Sets",
+    "toggleNav": "Toggle navigation menu",
+    "appName": "RepeatWise",
+    "toggleUserMenu": "Toggle user menu",
+    "myAccount": "My Account",
+    "settings": "Settings",
+    "support": "Support",
+    "logout": "Logout"
+  },
+  "Validation": {
+    "topicMin": "Topic must be at least 2 characters.",
+    "uploadDocument": "Please upload a valid document."
+  }
+}

@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
+import { useTranslations } from "next-intl";
 
 export default function SuccessCalendar() {
+  const t = useTranslations('SuccessCalendar');
   const [studyDays, setStudyDays] = useState<Date[]>([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -30,8 +32,8 @@ export default function SuccessCalendar() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Success Calendar</CardTitle>
-        <CardDescription>Your study streak visualized.</CardDescription>
+        <CardTitle>{t('title')}</CardTitle>
+        <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent className="flex justify-center">
         <Calendar
