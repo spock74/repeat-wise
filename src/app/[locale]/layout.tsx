@@ -17,9 +17,18 @@ export default function LocaleLayout({
 }>) {
   const messages = useMessages();
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <MainLayout>{children}</MainLayout>
-      <Toaster />
-    </NextIntlClientProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body className='font-body antialiased'>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <MainLayout>{children}</MainLayout>
+          <Toaster />
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
