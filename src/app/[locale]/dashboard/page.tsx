@@ -10,7 +10,7 @@ import PerformanceStats from "@/components/dashboard/performance-stats"
 import SuccessCalendar from "@/components/dashboard/success-calendar"
 import TodoList from "@/components/dashboard/todo-list"
 import { BookOpen, Sparkles } from "lucide-react"
-import { Link } from 'next-intl'
+import { Link } from '@/navigation'
 import { useTranslations } from "next-intl"
 
 export default function DashboardPage() {

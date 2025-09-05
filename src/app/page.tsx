@@ -1,6 +1,5 @@
-import { redirect } from 'next/navigation';
-
-// This is the root page, which redirects to the default locale's dashboard.
+import {redirect} from '../navigation';
+ 
 export default function RootPage() {
-  redirect('/pt/dashboard');
+  redirect('/dashboard');
 }

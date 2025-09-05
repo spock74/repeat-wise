@@ -1,8 +1,7 @@
 
 'use client';
 
-import { Link } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import {
   BookOpen,
   LayoutDashboard,
@@ -31,7 +30,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter, Link } from '@/navigation';
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -53,19 +53,16 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 }
 
 function LocaleSwitcher() {
-  const locale = useTranslations()('Layout');
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
   const onSelectChange = (value: string) => {
-    // This will replace the current path with the new locale.
-    // e.g., /en/dashboard -> /pt/dashboard
-    const newPath = pathname.replace(`/${locale}`, `/${value}`);
-    router.replace(newPath, { locale: value });
+    router.replace(pathname, {locale: value});
   };
 
   return (
-    <Select onValueChange={onSelectChange} defaultValue={useLocale()}>
+    <Select onValueChange={onSelectChange} defaultValue={locale}>
       <SelectTrigger className="w-[80px]">
         <SelectValue placeholder="Language" />
       </SelectTrigger>
@@ -90,9 +87,7 @@ function SidebarNav() {
   return (
     <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
       {navItems.map(({ href, label, icon: Icon }) => {
-        const locale = useLocale();
-        const localizedPath = `/${locale}${href}`;
-        const isActive = pathname === localizedPath;
+        const isActive = pathname === href;
         
         return (
           <Link
@@ -114,6 +109,7 @@ function SidebarNav() {
 
 function Sidebar() {
   const t = useTranslations('Layout');
+
   return (
     <aside className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
@@ -158,9 +154,7 @@ function MobileSidebar() {
         <div className="flex-1 overflow-y-auto py-2">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
             {navItems.map(({ href, label, icon: Icon }) => {
-              const locale = useLocale();
-              const localizedPath = `/${locale}${href}`;
-              const isActive = pathname === localizedPath;
+              const isActive = pathname === href;
               return (
               <Link
                 key={label}
