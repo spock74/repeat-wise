@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -22,7 +23,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import {
   Select,
   SelectContent,
@@ -32,6 +42,9 @@ import {
 } from '@/components/ui/select';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter, Link } from '@/navigation';
+import { useThemeStore } from '@/store/theme';
+import { useAnimationStore } from '@/store/animation';
+
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -41,6 +54,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6">
           <MobileSidebar />
           <div className="w-full flex-1" />
+          <SettingsMenu />
           <LocaleSwitcher />
           <UserMenu />
         </header>
@@ -71,6 +85,77 @@ function LocaleSwitcher() {
         <SelectItem value="en">EN</SelectItem>
       </SelectContent>
     </Select>
+  );
+}
+
+function ThemeSettingsDialog() {
+  const { setTheme } = useThemeStore();
+  const t = useTranslations('Layout');
+
+  const themes: {name: any, label: string}[] = [
+    { name: 'theme-orange', label: 'Orange' },
+    { name: 'theme-blue', label: 'Blue' },
+    { name: 'theme-green', label: 'Green' },
+    { name: 'theme-purple', label: 'Purple' },
+    { name: 'theme-dark', label: 'Dark' },
+  ];
+
+  return (
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>{t('colorScheme')}</DialogTitle>
+        <DialogDescription>{t('colorSchemeDescription')}</DialogDescription>
+      </DialogHeader>
+      <div className="grid grid-cols-2 gap-4">
+        {themes.map((theme) => (
+          <Button
+            key={theme.name}
+            variant="outline"
+            onClick={() => setTheme(theme.name)}
+          >
+            {theme.label}
+          </Button>
+        ))}
+      </div>
+    </DialogContent>
+  );
+}
+
+
+function SettingsMenu() {
+  const t = useTranslations('Layout');
+  const [open, setOpen] = useState(false);
+  const { useCardAnimation, toggleCardAnimation } = useAnimationStore();
+
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}> 
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Settings className="h-5 w-5" />
+            <span className="sr-only">{t('settings')}</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>{t('settings')}</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DialogTrigger asChild>
+            <DropdownMenuItem>
+              {t('colorScheme')}
+            </DropdownMenuItem>
+          </DialogTrigger>
+          <DropdownMenuCheckboxItem
+            checked={useCardAnimation}
+            onCheckedChange={toggleCardAnimation}
+          >
+            {t('useCardAnimations')}
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuItem>{t('support')}</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <ThemeSettingsDialog />
+    </Dialog>
   );
 }
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import MainLayout from '@/components/main-layout';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { ThemeProvider } from '@/components/theme-provider';
  
 export const metadata: Metadata = {
   title: 'RepeatWise',
@@ -30,8 +31,10 @@ export default function LocaleLayout({
       </head>
       <body className='font-body antialiased'>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <MainLayout>{children}</MainLayout>
-          <Toaster />
+          <ThemeProvider>
+            <MainLayout>{children}</MainLayout>
+            <Toaster />
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

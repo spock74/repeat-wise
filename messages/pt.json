@@ -49,7 +49,33 @@
     "actions": "Ações",
     "edit": "Editar",
     "study": "Estudar",
-    "delete": "Excluir"
+    "delete": "Excluir",
+    "exampleSets": {
+      "set1": {
+        "name": "Biologia 101",
+        "discipline": "Ciência",
+        "topic": "Biologia Celular",
+        "nextReview": "Em 2 dias"
+      },
+      "set2": {
+        "name": "História da Segunda Guerra",
+        "discipline": "História",
+        "topic": "Teatro Europeu",
+        "nextReview": "Amanhã"
+      },
+      "set3": {
+        "name": "Fundamentos de JavaScript",
+        "discipline": "Programação",
+        "topic": "ES6+",
+        "nextReview": "Hoje"
+      },
+      "set4": {
+        "name": "História da Arte: Renascimento",
+        "discipline": "Artes",
+        "topic": "Renascimento Italiano",
+        "nextReview": "Em 5 dias"
+      }
+    }
   },
   "Study": {
     "title": "Sessão de Estudo",
@@ -62,7 +88,33 @@
     "prev": "Anterior",
     "next": "Próxima",
     "yourAnswer": "Sua resposta...",
-    "correctAnswer": "Resposta Correta:"
+    "correctAnswer": "Resposta Correta:",
+    "exampleQuestions": {
+      "q1": {
+        "question": "Qual é a capital da França?",
+        "options": {
+          "a": "Berlim",
+          "b": "Madri",
+          "c": "Paris",
+          "d": "Roma"
+        },
+        "answer": "Paris"
+      },
+      "q2": {
+        "question": "Explique a teoria da relatividade em termos simples.",
+        "answer": "Uma teoria desenvolvida por Albert Einstein que descreve a relação entre espaço e tempo. Uma ideia chave é que as leis da física são as mesmas para todos os observadores não acelerados."
+      },
+      "q3": {
+        "question": "Qual planeta é conhecido como o Planeta Vermelho?",
+        "options": {
+          "a": "Terra",
+          "b": "Marte",
+          "c": "Júpiter",
+          "d": "Saturno"
+        },
+        "answer": "Marte"
+      }
+    }
   },
   "PerformanceStats": {
     "title": "Progresso dos Estudos",
@@ -97,7 +149,14 @@
     "myAccount": "Minha Conta",
     "settings": "Configurações",
     "support": "Suporte",
-    "logout": "Sair"
+    "logout": "Sair",
+    "colorScheme": "Esquema de Cores",
+    "colorSchemeDescription": "Escolha uma paleta de cores para o aplicativo.",
+    "useCardAnimations": "Usar animações nos Cards",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "toggleTheme": "Alternar tema"
   },
   "Validation": {
     "topicMin": "O tópico deve ter pelo menos 2 caracteres.",

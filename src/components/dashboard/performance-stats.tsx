@@ -4,30 +4,33 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from "
 import { useTranslations } from "next-intl";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 
-const chartData = [
-  { month: "January", retention: 86, new: 50 },
-  { month: "February", retention: 88, new: 60 },
-  { month: "March", retention: 90, new: 75 },
-  { month: "April", retention: 92, new: 80 },
-  { month: "May", retention: 91, new: 70 },
-  { month: "June", retention: 93, new: 85 },
+const chartDataDefinition = [
+  { monthKey: "january", retention: 86, new: 50 },
+  { monthKey: "february", retention: 88, new: 60 },
+  { monthKey: "march", retention: 90, new: 75 },
+  { monthKey: "april", retention: 92, new: 80 },
+  { monthKey: "may", retention: 91, new: 70 },
+  { monthKey: "june", retention: 93, new: 85 },
 ];
 
 export default function PerformanceStats() {
   const t = useTranslations('PerformanceStats');
 
+  const chartData = chartDataDefinition.map(d => ({
+    ...d,
+    month: t(d.monthKey),
+  }));
+
   const chartConfig = {
     retention: {
       label: t('retention'),
-      color: "hsl(var(--primary))",
+      color: "hsl(var(--chart-1))",
     },
     new: {
       label: t('newQuestions'),
-      color: "hsl(var(--accent))",
+      color: "hsl(var(--chart-2))",
     },
   } satisfies ChartConfig;
-  
-  const monthT = (key: string) => t(key.toLowerCase());
 
   return (
     <Card className="w-full">
@@ -45,7 +48,7 @@ export default function PerformanceStats() {
                 tickLine={false}
                 tickMargin={10}
                 axisLine={false}
-                tickFormatter={(value) => monthT(value).slice(0, 3)}
+                tickFormatter={(value) => value.slice(0, 3)}
               />
               <YAxis
                 unit="%"

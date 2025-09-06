@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Table,
   TableBody,
@@ -25,16 +27,15 @@ import {
   } from "@/components/ui/dropdown-menu"
 import { useTranslations } from "next-intl"
 
-const questionSets = [
-    { name: "Biology 101", discipline: "Science", topic: "Cell Biology", questions: 45, nextReview: "2 days" },
-    { name: "WWII History", discipline: "History", topic: "European Theater", questions: 82, nextReview: "Tomorrow" },
-    { name: "JavaScript Fundamentals", discipline: "Programming", topic: "ES6+", questions: 120, nextReview: "Today" },
-    { name: "Art History: Renaissance", discipline: "Arts", topic: "Italian Renaissance", questions: 33, nextReview: "5 days" },
-];
-
-
 export default function ManagePage() {
     const t = useTranslations('Manage');
+
+    const questionSets = [
+        { name: t('exampleSets.set1.name'), discipline: t('exampleSets.set1.discipline'), topic: t('exampleSets.set1.topic'), questions: 45, nextReview: t('exampleSets.set1.nextReview') },
+        { name: t('exampleSets.set2.name'), discipline: t('exampleSets.set2.discipline'), topic: t('exampleSets.set2.topic'), questions: 82, nextReview: t('exampleSets.set2.nextReview') },
+        { name: t('exampleSets.set3.name'), discipline: t('exampleSets.set3.discipline'), topic: t('exampleSets.set3.topic'), questions: 120, nextReview: t('exampleSets.set3.nextReview') },
+        { name: t('exampleSets.set4.name'), discipline: t('exampleSets.set4.discipline'), topic: t('exampleSets.set4.topic'), questions: 33, nextReview: t('exampleSets.set4.nextReview') },
+    ];
 
     return (
         <Card>

@@ -49,7 +49,33 @@
     "actions": "Actions",
     "edit": "Edit",
     "study": "Study",
-    "delete": "Delete"
+    "delete": "Delete",
+    "exampleSets": {
+      "set1": {
+        "name": "Biology 101",
+        "discipline": "Science",
+        "topic": "Cell Biology",
+        "nextReview": "2 days"
+      },
+      "set2": {
+        "name": "WWII History",
+        "discipline": "History",
+        "topic": "European Theater",
+        "nextReview": "Tomorrow"
+      },
+      "set3": {
+        "name": "JavaScript Fundamentals",
+        "discipline": "Programming",
+        "topic": "ES6+",
+        "nextReview": "Today"
+      },
+      "set4": {
+        "name": "Art History: Renaissance",
+        "discipline": "Arts",
+        "topic": "Italian Renaissance",
+        "nextReview": "5 days"
+      }
+    }
   },
   "Study": {
     "title": "Study Session",
@@ -62,7 +88,33 @@
     "prev": "Prev",
     "next": "Next",
     "yourAnswer": "Your answer...",
-    "correctAnswer": "Correct Answer:"
+    "correctAnswer": "Correct Answer:",
+    "exampleQuestions": {
+      "q1": {
+        "question": "What is the capital of France?",
+        "options": {
+          "a": "Berlin",
+          "b": "Madrid",
+          "c": "Paris",
+          "d": "Rome"
+        },
+        "answer": "Paris"
+      },
+      "q2": {
+        "question": "Explain the theory of relativity in simple terms.",
+        "answer": "A theory developed by Albert Einstein that describes the relationship between space and time. A key idea is that the laws of physics are the same for all non-accelerating observers."
+      },
+      "q3": {
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "a": "Earth",
+          "b": "Mars",
+          "c": "Jupiter",
+          "d": "Saturn"
+        },
+        "answer": "Mars"
+      }
+    }
   },
   "PerformanceStats": {
     "title": "Study Progress",
@@ -97,7 +149,14 @@
     "myAccount": "My Account",
     "settings": "Settings",
     "support": "Support",
-    "logout": "Logout"
+    "logout": "Logout",
+    "colorScheme": "Color Scheme",
+    "colorSchemeDescription": "Choose a color palette for the app.",
+    "useCardAnimations": "Use animations on Cards",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggleTheme": "Toggle theme"
   },
   "Validation": {
     "topicMin": "Topic must be at least 2 characters.",
