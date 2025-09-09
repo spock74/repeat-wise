@@ -12,7 +12,10 @@ import { motion } from 'framer-motion';
 import { useAnimationStore } from '@/store/animation';
 import { cn } from '@/lib/utils';
 
-export default function QuestionViewer({ t }: { t: any }) {
+import { useTranslations } from 'next-intl';
+
+export default function QuestionViewer() {
+  const t = useTranslations('Study');
   const { useCardAnimation } = useAnimationStore();
 
   const questions = [

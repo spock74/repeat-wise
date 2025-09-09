@@ -23,10 +23,10 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { getTranslator } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 
-export default async function ManagePage({ params: { locale } }: { params: { locale: string } }) {
-    const t = await getTranslator(locale, 'Manage');
+export default async function ManagePage() {
+    const t = await getTranslations('Manage');
 
     const questionSets = [
         { name: t('exampleSets.set1.name'), discipline: t('exampleSets.set1.discipline'), topic: t('exampleSets.set1.topic'), questions: 45, nextReview: t('exampleSets.set1.nextReview') },

@@ -35,16 +35,15 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, FileUp, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslations } from 'next-intl';
 
-function GenerateFromParametersForm({ 
-  setGeneratedQuestions, 
-  t, 
-  tValidation 
-}: { 
-  setGeneratedQuestions: (q: string[]) => void, 
-  t: any, 
-  tValidation: any 
+function GenerateFromParametersForm({
+  setGeneratedQuestions
+}: {
+  setGeneratedQuestions: (q: string[]) => void
 }) {
+  const t = useTranslations('Generate');
+  const tValidation = useTranslations('Validation');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -171,15 +170,13 @@ function GenerateFromParametersForm({
   );
 }
 
-function GenerateFromDocumentForm({ 
-  setGeneratedQuestions, 
-  t, 
-  tValidation 
-}: { 
-  setGeneratedQuestions: (q: string[]) => void, 
-  t: any, 
-  tValidation: any 
+function GenerateFromDocumentForm({
+  setGeneratedQuestions
+}: {
+  setGeneratedQuestions: (q: string[]) => void
 }) {
+  const t = useTranslations('Generate');
+  const tValidation = useTranslations('Validation');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState('');
   const { toast } = useToast();
@@ -300,8 +297,9 @@ function GenerateFromDocumentForm({
   );
 }
 
-export default function GenerateForm({ t, tValidation }: { t: any, tValidation: any }) {
+export default function GenerateForm() {
   const [generatedQuestions, setGeneratedQuestions] = useState<string[]>([]);
+  const t = useTranslations('Generate');
   return (
     <div className="space-y-8">
       <Tabs defaultValue="topic" className="w-full">
@@ -310,17 +308,13 @@ export default function GenerateForm({ t, tValidation }: { t: any, tValidation: 
           <TabsTrigger value="document">{t('fromDocument')}</TabsTrigger>
         </TabsList>
         <TabsContent value="topic" className="mt-6">
-          <GenerateFromParametersForm 
-            setGeneratedQuestions={setGeneratedQuestions} 
-            t={t} 
-            tValidation={tValidation} 
+          <GenerateFromParametersForm
+            setGeneratedQuestions={setGeneratedQuestions}
           />
         </TabsContent>
         <TabsContent value="document" className="mt-6">
-          <GenerateFromDocumentForm 
-            setGeneratedQuestions={setGeneratedQuestions} 
-            t={t} 
-            tValidation={tValidation} 
+          <GenerateFromDocumentForm
+            setGeneratedQuestions={setGeneratedQuestions}
           />
         </TabsContent>
       </Tabs>

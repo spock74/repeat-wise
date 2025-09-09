@@ -1,37 +1,38 @@
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
 
 import MainLayout from '@/components/main-layout';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
-import type { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google';
+import {ThemeProvider} from '@/components/theme-provider';
+import {Toaster} from '@/components/ui/toaster';
+import {cn} from '@/lib/utils';
+import type {Metadata} from 'next';
+import {Inter as FontSans} from 'next/font/google';
 import '../globals.css';
 
-const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' });
+const fontSans = FontSans({subsets: ['latin'], variable: '--font-sans'});
 
 export const metadata: Metadata = {
   title: 'Next-Gen Flashcards',
   description: 'A modern flashcard app built with Next.js and AI.',
 };
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
-  params: { locale },
+  params
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: {locale: string};
 }) {
-  const messages = useMessages();
+  const messages = await getMessages();
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={params.locale} suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
           fontSans.variable
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={params.locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <MainLayout>{children}</MainLayout>
             <Toaster />

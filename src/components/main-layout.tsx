@@ -264,6 +264,7 @@ function MobileSidebar() {
 
 function UserMenu() {
   const t = useTranslations('Layout');
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -281,7 +282,7 @@ function UserMenu() {
         <DropdownMenuItem>{t('settings')}</DropdownMenuItem>
         <DropdownMenuItem>{t('support')}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{t('logout')}</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push('/signin')}>{t('logout')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
