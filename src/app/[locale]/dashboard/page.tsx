@@ -11,10 +11,10 @@ import SuccessCalendar from "@/components/dashboard/success-calendar"
 import TodoList from "@/components/dashboard/todo-list"
 import { BookOpen, Sparkles } from "lucide-react"
 import { Link } from '@/navigation'
-import { useTranslations } from "next-intl"
+import { getTranslator } from "next-intl/server";
 
-export default function DashboardPage() {
-  const t = useTranslations('Dashboard');
+export default async function DashboardPage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslator(locale, 'Dashboard');
 
   return (
     <div className="flex flex-col gap-6">

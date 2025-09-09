@@ -1,7 +1,5 @@
-import { redirect } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { redirect } from '@/navigation';
 
 export default function LocaleRootPage() {
-  const locale = useLocale();
-  redirect(`/${locale}/dashboard`);
+  redirect('/dashboard');
 }

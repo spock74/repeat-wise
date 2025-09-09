@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Table,
   TableBody,
@@ -25,10 +23,10 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { useTranslations } from "next-intl"
+import { getTranslator } from "next-intl/server"
 
-export default function ManagePage() {
-    const t = useTranslations('Manage');
+export default async function ManagePage({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslator(locale, 'Manage');
 
     const questionSets = [
         { name: t('exampleSets.set1.name'), discipline: t('exampleSets.set1.discipline'), topic: t('exampleSets.set1.topic'), questions: 45, nextReview: t('exampleSets.set1.nextReview') },

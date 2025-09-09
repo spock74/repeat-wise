@@ -35,13 +35,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, FileUp, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { useTranslations } from 'next-intl';
 
-function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQuestions: (q: string[]) => void }) {
+function GenerateFromParametersForm({ 
+  setGeneratedQuestions, 
+  t, 
+  tValidation 
+}: { 
+  setGeneratedQuestions: (q: string[]) => void, 
+  t: any, 
+  tValidation: any 
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const t = useTranslations('Generate');
-  const tValidation = useTranslations('Validation');
 
   const paramsFormSchema = z.object({
     topic: z.string().min(2, { message: tValidation('topicMin') }),
@@ -166,12 +171,18 @@ function GenerateFromParametersForm({ setGeneratedQuestions }: { setGeneratedQue
   );
 }
 
-function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuestions: (q: string[]) => void }) {
+function GenerateFromDocumentForm({ 
+  setGeneratedQuestions, 
+  t, 
+  tValidation 
+}: { 
+  setGeneratedQuestions: (q: string[]) => void, 
+  t: any, 
+  tValidation: any 
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState('');
   const { toast } = useToast();
-  const t = useTranslations('Generate');
-  const tValidation = useTranslations('Validation');
 
   const docFormSchema = z.object({
     documentDataUri: z.string().startsWith('data:', {message: tValidation('uploadDocument')}),
@@ -289,9 +300,8 @@ function GenerateFromDocumentForm({ setGeneratedQuestions }: { setGeneratedQuest
   );
 }
 
-export default function GenerateForm() {
+export default function GenerateForm({ t, tValidation }: { t: any, tValidation: any }) {
   const [generatedQuestions, setGeneratedQuestions] = useState<string[]>([]);
-  const t = useTranslations('Generate');
   return (
     <div className="space-y-8">
       <Tabs defaultValue="topic" className="w-full">
@@ -300,10 +310,18 @@ export default function GenerateForm() {
           <TabsTrigger value="document">{t('fromDocument')}</TabsTrigger>
         </TabsList>
         <TabsContent value="topic" className="mt-6">
-          <GenerateFromParametersForm setGeneratedQuestions={setGeneratedQuestions} />
+          <GenerateFromParametersForm 
+            setGeneratedQuestions={setGeneratedQuestions} 
+            t={t} 
+            tValidation={tValidation} 
+          />
         </TabsContent>
         <TabsContent value="document" className="mt-6">
-          <GenerateFromDocumentForm setGeneratedQuestions={setGeneratedQuestions} />
+          <GenerateFromDocumentForm 
+            setGeneratedQuestions={setGeneratedQuestions} 
+            t={t} 
+            tValidation={tValidation} 
+          />
         </TabsContent>
       </Tabs>
       {generatedQuestions.length > 0 && (

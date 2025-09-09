@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -9,16 +8,12 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { ArrowLeft, ArrowRight, Check, RefreshCw } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
-import { useTranslations } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useAnimationStore } from '@/store/animation';
 import { cn } from '@/lib/utils';
 
-
-export default function QuestionViewer() {
-  const t = useTranslations('Study');
+export default function QuestionViewer({ t }: { t: any }) {
   const { useCardAnimation } = useAnimationStore();
-
 
   const questions = [
     {
@@ -102,13 +97,6 @@ export default function QuestionViewer() {
     return null;
   };
   
-  const renderAnswerBody = () => (
-    <div className="space-y-4 p-4 bg-muted rounded-lg -m-6" style={{ transform: "rotateY(180deg)"}}>
-      <p className="font-semibold">{t('correctAnswer')}</p>
-      <p>{currentQuestion.answer}</p>
-    </div>
-  );
-
   const getQuestionTypeLabel = (type: string) => {
     if(type === 'multiple-choice') return t('multipleChoice')
     if(type === 'open-response') return t('openResponse')
