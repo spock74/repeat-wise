@@ -48,19 +48,21 @@ import { useAnimationStore } from '@/store/animation';
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <Sidebar />
-      <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6">
-          <MobileSidebar />
-          <div className="w-full flex-1" />
-          <SettingsMenu />
-          <LocaleSwitcher />
-          <UserMenu />
-        </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-          {children}
-        </main>
+    <div className="min-h-screen w-full bg-gradient-to-br from-background to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+        <Sidebar />
+        <div className="flex flex-col">
+          <header className="flex h-14 items-center gap-4 border-b bg-card/60 px-4 backdrop-blur-sm lg:h-[60px] lg:px-6 sticky top-0 z-30">
+            <MobileSidebar />
+            <div className="w-full flex-1" />
+            <SettingsMenu />
+            <LocaleSwitcher />
+            <UserMenu />
+          </header>
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );
@@ -180,7 +182,7 @@ function SidebarNav() {
             href={href}
             className={cn(
               'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
-              { 'bg-muted text-primary': isActive }
+              { 'bg-primary/10 text-primary': isActive }
             )}
           >
             <Icon className="h-4 w-4" />
@@ -196,7 +198,7 @@ function Sidebar() {
   const t = useTranslations('Layout');
 
   return (
-    <aside className="hidden border-r bg-muted/40 md:block">
+    <aside className="hidden border-r bg-card/60 backdrop-blur-sm md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
@@ -229,7 +231,7 @@ function MobileSidebar() {
           <span className="sr-only">{t('toggleNav')}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col p-0">
+      <SheetContent side="left" className="flex flex-col p-0 bg-card/80 backdrop-blur-sm">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
             <Sparkles className="h-6 w-6 text-primary" />
@@ -246,7 +248,7 @@ function MobileSidebar() {
                 href={href}
                 className={cn(
                   'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
-                  { 'bg-muted text-primary': isActive }
+                  { 'bg-primary/10 text-primary': isActive }
                 )}
               >
                 <Icon className="h-4 w-4" />
