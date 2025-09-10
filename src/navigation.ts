@@ -10,19 +10,19 @@ export const pathnames = {
   },
   '/dashboard': {
     en: '/dashboard',
-    pt: '/painel'
+    pt: '/dashboard'
   },
   '/study': {
-    en: '/study-session',
-    pt: '/sessao-de-estudo'
+    en: '/study',
+    pt: '/study'
   },
   '/generate': {
-    en: '/generate-questions',
-    pt: '/gerar-perguntas'
+    en: '/generate',
+    pt: '/generate'
   },
   '/manage': {
-    en: '/manage-sets',
-    pt: '/gerenciar-conjuntos'
+    en: '/manage',
+    pt: '/manage'
   }
 } as const;
 
